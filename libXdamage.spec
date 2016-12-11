@@ -4,12 +4,12 @@
 #
 Name     : libXdamage
 Version  : 1.1.4
-Release  : 6
+Release  : 7
 URL      : http://xorg.freedesktop.org/releases/individual/lib/libXdamage-1.1.4.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/lib/libXdamage-1.1.4.tar.bz2
 Summary  : X Damage  Library
 Group    : Development/Tools
-License  : MIT
+License  : HPND
 Requires: libXdamage-lib
 BuildRequires : pkgconfig(damageproto)
 BuildRequires : pkgconfig(fixesproto)
@@ -29,6 +29,7 @@ This package contains the library for the X Damage extension.
 Summary: dev components for the libXdamage package.
 Group: Development
 Requires: libXdamage-lib
+Provides: libXdamage-devel
 
 %description dev
 dev components for the libXdamage package.
@@ -46,10 +47,15 @@ lib components for the libXdamage package.
 %setup -q -n libXdamage-1.1.4
 
 %build
+export LANG=C
 %configure --disable-static
-make V=1 %{?_smp_mflags}
+make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
@@ -62,9 +68,10 @@ rm -rf %{buildroot}
 %files dev
 %defattr(-,root,root,-)
 /usr/include/X11/extensions/Xdamage.h
-/usr/lib64/*.so
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/libXdamage.so
+/usr/lib64/pkgconfig/xdamage.pc
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libXdamage.so.1
+/usr/lib64/libXdamage.so.1.1.0
