@@ -4,7 +4,7 @@
 #
 Name     : libXdamage
 Version  : 1.1.4
-Release  : 10
+Release  : 11
 URL      : http://xorg.freedesktop.org/releases/individual/lib/libXdamage-1.1.4.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/lib/libXdamage-1.1.4.tar.bz2
 Summary  : X Damage  Library
